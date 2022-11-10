@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-
 public class SwingGraphics implements ActionListener {
     private JFrame mainFrame;
 
@@ -113,13 +112,16 @@ public class SwingGraphics implements ActionListener {
                 //get Links
                 if(pTerm.equals("LINKS")) {
                     if(line.contains("href=\"")){
-                        int index = line.indexOf("href=\"") + 6;
-                        String link = new String("");
-                        while(line.charAt(index) != '\"') {
-                            link = link.concat(line.charAt(index)+"");
+                        int index = line.indexOf("href=\"") + 6; //start at href= because that signals start of link
+                        String link = "";
+
+                        while(line.charAt(index) != '\"') {    //continue through chars until the end quotation mark
+                            link = link.concat(line.charAt(index)+"");   //add char to link
                             index ++;
                         }
-                        ta.append(link + "\n");
+
+                        if(link.contains("http")) //some links are .json or just #. This avoids that
+                            ta.append(link + "\n");
                     }
 
                 //get term mentions
