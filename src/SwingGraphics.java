@@ -1,3 +1,4 @@
+//Rio Voss-Kernan, Nov 2022, HTML Scraper
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -39,7 +40,7 @@ public class SwingGraphics implements ActionListener {
             }
         });
 
-        //Instantiate Panels
+    //Instantiate Panels
         textPanel = new JPanel();
         topPanel = new JPanel();
         urlPanel = new JPanel();
@@ -47,31 +48,33 @@ public class SwingGraphics implements ActionListener {
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(2,1));
 
-
-        //text area
+    //text area
         textPanel.setLayout(new GridLayout());
         ta = new JTextArea();
         ta.setEditable(false);
         ta.setFont(new Font("Poppins",Font.PLAIN,12));
-        //set scrollable
+    //set scrollable
         JScrollPane scroll = new JScrollPane(ta);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         textPanel.add(scroll);
+    //color
+        //ta.setBackground(Color.black);
+        //ta.setForeground(Color.GREEN);
 
-        //button
+    //button
         goButton = new JButton("GO");
         goButton.setFont(new Font("Poppins",Font.BOLD,20));
         goButton.setPreferredSize(new Dimension(200,50));
         goButton.setActionCommand("GO");
         goButton.addActionListener(new ButtonClickListener());
 
-        //set labels
+    //set labels
         termLabel = new JLabel("TERM:", JLabel.CENTER);
         urlLabel = new JLabel("URL:    ", JLabel.CENTER);
         termLabel.setFont(new Font("Poppins",Font.BOLD,20));
         urlLabel.setFont(new Font("Poppins",Font.BOLD,20));
 
-        //set term panel
+    //set term panel
         termPanel.setLayout(new FlowLayout());
         termPanel.add(termLabel);
         term = new JTextField();
@@ -79,7 +82,7 @@ public class SwingGraphics implements ActionListener {
         termPanel.add(term);
         inputPanel.add(termPanel);
 
-        //set URL panel
+    //set URL panel
         urlPanel.setLayout(new FlowLayout());
         urlPanel.add(urlLabel);
         url = new JTextField();
@@ -87,12 +90,12 @@ public class SwingGraphics implements ActionListener {
         urlPanel.add(url);
         inputPanel.add(urlPanel);
 
-        //set topPanel Layout
+    //set topPanel Layout
         topPanel.setLayout(new FlowLayout());
         topPanel.add(inputPanel);
         topPanel.add(goButton);
 
-        // set Frame layout
+    // set Frame layout
         mainFrame.add(textPanel,BorderLayout.CENTER);
         mainFrame.add(topPanel,BorderLayout.NORTH);
 
