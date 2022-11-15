@@ -109,20 +109,35 @@ public class SwingGraphics implements ActionListener {
 
             //Read line-by-line until end
             while ((line = reader.readLine()) != null) {
-                //get Links
-                if(pTerm.equals("LINKS")) {
-                    if(line.contains("href=\"")){
+                //get Wiki Links
+                if(pTerm.equals("WIKI LINKS")) {
+                    if (line.contains("href=\"/wiki")) {
                         int index = line.indexOf("href=\"") + 6; //start at href= because that signals start of link
                         String link = "";
 
-                        while(line.charAt(index) != '\"') {    //continue through chars until the end quotation mark
-                            link = link.concat(line.charAt(index)+"");   //add char to link
-                            index ++;
+                        while (line.charAt(index) != '\"') {    //continue through chars until the end quotation mark
+                            link = link.concat(line.charAt(index) + "");   //add char to link
+                            index++;
                         }
 
-                        if(link.contains("http")) //some links are .json or just #. This avoids that
+                        if (link.contains("/wiki/")) //some links are .json or just #. This avoids that
                             ta.append(link + "\n");
                     }
+
+                //get LINKS
+                }else if(pTerm.equals("LINKS")) {
+                        if(line.contains("href=\"")){
+                            int index = line.indexOf("href=\"") + 6; //start at href= because that signals start of link
+                            String link = "";
+
+                            while(line.charAt(index) != '\"') {    //continue through chars until the end quotation mark
+                                link = link.concat(line.charAt(index)+"");   //add char to link
+                                index ++;
+                            }
+
+                            if(link.contains("http")) //some links are .json or just #. This avoids that
+                                ta.append(link + "\n");
+                        }
 
                 //get term mentions
                 }else  if(line.contains(pTerm)) {
